@@ -23,11 +23,15 @@ experiência de quem usa tecnologia assistiva**.
 
 ### 1. Apresentação vs. semântica
 
-<!-- Ex.: "as melhores marcas" estava em <b> e virou <strong>, porque ... -->
+-Encontrei as tags <b> e <i> e alterei para <strong> e <em> na linha 84.
+-Substituí <u> por <ins>
+-Substituí tags erradas de samântica para as regras corretas, como respeitar a hierarquia de tamanhos, e retirar a tag obsoleta "font" na linha 118. 
+
 
 ### 2. Hierarquia de cabeçalhos
 
 ### 3. Landmarks
+
 
 ### 4. Tabelas
 

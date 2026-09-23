@@ -32,7 +32,6 @@ experiência de quem usa tecnologia assistiva**.
 -Os níveis pulados foram ajustados para seguir a hierarquia da página
 -h1/h2/h2/h3/h3/h3  h2(118)/h2/h3/
 
-
 ### 3. Landmarks
 -Adicionei lang="pt-br" no cabeçalho, declarado no html.
 -Correção para <header> o que se encontrava em <div> ex: <header id="topo"> e de <table> para <nav> em  blocos de links de navegação.
@@ -47,6 +46,9 @@ experiência de quem usa tecnologia assistiva**.
 -Foram retirados: <table class="layout" width="100%">,<tr>, <td
 
 ### 5. Links e botões
+-Correção de link do carrinho com indicação de acesso.
+-Mudança de termos como "clique aqui" e "saiba mais" para especificar o conteúdo a ser acessado. 
+-Correção de <divs> para <button> ou <form>
 
 ### 6. Listas
 

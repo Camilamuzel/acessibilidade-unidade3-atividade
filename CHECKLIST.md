@@ -36,21 +36,21 @@ estar no lugar. Não há resposta única para todos os itens — argumente sua e
 
 ### 2. Hierarquia de cabeçalhos
 
-- [ ] Liste, na ordem, todos os cabeçalhos da página. Quantos `<h1>` existem?
+- [x] Liste, na ordem, todos os cabeçalhos da página. Quantos `<h1>` existem?
 - [ ] Algum título "parece" título mas não usa tag de cabeçalho?
-- [ ] Existe algum nível pulado (h1 → h3, h2 → h6)?
+- [x] Existe algum nível pulado (h1 → h3, h2 → h6)?
 - [ ] Algum cabeçalho foi escolhido pelo **tamanho** que produz, e não pelo nível que representa?
 - [ ] Desenhe a hierarquia final como um índice de livro. Ela faz sentido?
 
 ### 3. Landmarks
 
-- [ ] A página tem cabeçalho de site? Está em `<header>`?
+- [x] A página tem cabeçalho de site? Está em `<header>`?
 - [ ] A navegação principal está em `<nav>`?
-- [ ] Existe **mais de uma** área de navegação? Como um leitor de tela diferencia uma da outra?
-- [ ] Onde começa e termina o conteúdo principal? Ele está em `<main>`?
-- [ ] O conteúdo complementar da lateral está em `<aside>`?
-- [ ] O rodapé está em `<footer>`?
-- [ ] O idioma da página está declarado na tag `<html>`?
+- [x] Existe **mais de uma** área de navegação? Como um leitor de tela diferencia uma da outra?
+- [x] Onde começa e termina o conteúdo principal? Ele está em `<main>`?
+- [x] O conteúdo complementar da lateral está em `<aside>`?
+- [x] O rodapé está em `<footer>`?
+- [x] O idioma da página está declarado na tag `<html>`?
 
 ### 4. Tabelas
 

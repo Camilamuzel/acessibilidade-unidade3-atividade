@@ -25,15 +25,24 @@ experiência de quem usa tecnologia assistiva**.
 
 -Encontrei as tags <b> e <i> e alterei para <strong> e <em> na linha 84.
 -Substituí <u> por <ins>
--Substituí tags erradas de samântica para as regras corretas, como respeitar a hierarquia de tamanhos, e retirar a tag obsoleta "font" na linha 118. 
-
+-Substituí tags erradas de samântica para as regras corretas, como respeitar a hierarquia de tamanhos, e retirar a tag obsoleta "font" em "categorias em destaque". 
 
 ### 2. Hierarquia de cabeçalhos
+-Só existe um h1 na página, em "título principal".
+-Os níveis pulados foram ajustados para seguir a hierarquia da página
+-h1/h2/h2/h3/h3/h3  h2(118)/h2/h3/
+
 
 ### 3. Landmarks
-
+-Adicionei lang="pt-br" no cabeçalho, declarado no html.
+-Correção para <header> o que se encontrava em <div> ex: <header id="topo"> e de <table> para <nav> em  blocos de links de navegação.
+-Utilizei <aside> para diferenciar o conteúdo tangencial do conteúdo principal.
+-Rodapé modificado para <footer> 
+-Nav adicionei Menu Principal no <nav>
+-Idioma declarado na tag <html>
 
 ### 4. Tabelas
+-
 
 ### 5. Links e botões
 

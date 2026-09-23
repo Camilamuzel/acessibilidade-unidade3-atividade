@@ -42,7 +42,9 @@ experiência de quem usa tecnologia assistiva**.
 -Idioma declarado na tag <html>
 
 ### 4. Tabelas
--
+-A tabela comparativa de modelos estava em <td> e sem <caption>; alteração do 125 ao 150. 
+-Com <th scope>, o leitor de tela anuncia o preço dizendo a que modelo ou atributo pertence.
+-Foram retirados: <table class="layout" width="100%">,<tr>, <td
 
 ### 5. Links e botões
 

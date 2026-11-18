@@ -51,15 +51,21 @@ experiência de quem usa tecnologia assistiva**.
 -Correção de <divs> para <button> ou <form>
 
 ### 6. Listas
+-de <spam> alterado para listas <li>
+-Da mesma forma "lista-falsa" saiiu de ser <div> para integrar uma lista de itens. 
 
 ### 7. Formulário
+-adição no placeholder:  required
+-Indicação de <label> em formulários, como substituição do imput.
+-Substituição no rodapé para lista.
+
 
 ## Testes que eu fiz
 
-- [ ] Percorri a página inteira **só com o teclado** (Tab) e alcancei todos os controles
+- [x] Percorri a página inteira **só com o teclado** (Tab) e alcancei todos os controles
 - [ ] Testei com leitor de tela (NVDA / VoiceOver / Orca)
-- [ ] Passei a página pelo validador do W3C
-- [ ] Comparei o visual com a versão original e o layout continua equivalente
+- [x] Passei a página pelo validador do W3C
+- [x] Comparei o visual com a versão original e o layout continua equivalente
 
 **Quantos cabeçalhos, links e landmarks o leitor de tela listou antes e depois?**
 

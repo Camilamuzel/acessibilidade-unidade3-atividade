@@ -10,6 +10,22 @@
       box-sizing: border-box;
     }
 
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 10px;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    left: 10px;
+}
+
     body {
       margin: 0;
       font-family: system-ui, "Segoe UI", Arial, sans-serif;
@@ -231,6 +247,14 @@
     }
   </style>
 </head>
+
+
+<div class="wrap">
+  <div class="skpLinkContainer">
+    <a class="skpLink" id="skpLinkVendedor" href="#conteudo">Conteudo Principal</a>
+    <a class="skpLink" id="skpLinkConteudo" href="#nomeCliente">Falar com um vendedor</a>
+  </div>
+</div>
 
 <body>
 

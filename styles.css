@@ -1,239 +1,251 @@
- * {
-      box-sizing: border-box;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .skip-link {
-    position: absolute;
-    left: -9999px;
-    top: 10px;
-    background-color: #000;
-    color: #fff;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 4px;
-    z-index: 1000;
-    }
+/* 1. Cores do Tema Claro (Padrão) */
+:root {
+  --bg-pagina: #f6f6f8;
+  --bg-superficie: #ffffff;
+  --bg-topo: #1f2a44;
+  --bg-menu: #2c3a5e;
+  --bg-trilha: #eef0f5;
+  --bg-lateral: #f2f4f9;
+  --bg-aviso: #fff8e1;
+  --texto-principal: #1c1c1e;
+  --texto-secundario: #5b6478;
+  --texto-topo: #ffffff;
+  --borda: #e0e4ee;
+  --borda-aviso: #f0dfa8;
+}
 
-    .skip-link:focus {
-    left: 10px;
-    }
+/* 2. Cores do Tema Escuro (Ativado quando o checkbox #btn-tema é clicado) */
+#btn-tema:checked ~ .topo-flex {
+  --bg-pagina: #0f172a;
+  --bg-superficie: #1e293b;
+  --bg-topo: #020617;
+  --bg-menu: #1e293b;
+  --bg-trilha: #0f172a;
+  --bg-lateral: #0f172a;
+  --bg-aviso: #332b00;
+  --texto-principal: #f1f5f9;
+  --texto-secundario: #cbd5e1;
+  --texto-topo: #f8fafc;
+  --borda: #334155;
+  --borda-aviso: #665500;
+}
 
-    body {
-      margin: 0;
-      font-family: system-ui, "Segoe UI", Arial, sans-serif;
-      color: #1c1c1e;
-      background: #f6f6f8;
-      line-height: 1.55;
-    }
+/* Pinta o fundo geral da tela no modo escuro */
+body:has(#btn-tema:checked) {
+  background: #0f172a;
+  color: #f1f5f9;
+}
 
-    .wrap {
-      max-width: 1040px;
-      margin: 0 auto;
-      background: #fff;
-    }
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 10px;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
 
-    #topo {
-      background: #1f2a44;
-      color: #fff;
-      padding: 18px 24px;
-    }
+.skip-link:focus {
+  left: 10px;
+}
 
-    .titulo-principal {
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", Arial, sans-serif;
+  color: var(--texto-principal);
+  background: var(--bg-pagina);
+  line-height: 1.55;
+  transition: background 0.2s, color 0.2s;
+}
 
-    .subtitulo {
-      color: #b9c4de;
-      font-size: 14px;
-    }
+.topo-flex {
+  max-width: 1040px;
+  margin: 0 auto;
+  background: var(--bg-superficie);
+  color: var(--texto-principal);
+}
 
-    #menu {
-      background: #2c3a5e;
-      padding: 10px 24px;
-    }
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  background: var(--bg-superficie);
+}
 
-    #menu span a {
-      color: #fff;
-      text-decoration: none;
-      margin-right: 20px;
-      font-size: 15px;
-      display: inline-block;
-      padding: 4px 0;
-    }
+#topo {
+  background: var(--bg-topo);
+  color: var(--texto-topo);
+  padding: 18px 24px;
+}
 
-    #menu span a:hover {
-      text-decoration: underline;
-    }
+.titulo-principal {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+}
 
-    #menu ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
+.subtitulo {
+  color: #b9c4de;
+  font-size: 14px;
+}
 
-    #menu li {
-      margin-right: 20px;
-    }
+#menu {
+  background: var(--bg-menu);
+  padding: 10px 24px;
+}
 
-    #menu a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 15px;
-      display: inline-block;
-      padding: 4px 0;
-    }
+#menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
 
-    #trilha {
-      padding: 10px 24px;
-      font-size: 13px;
-      color: #5b6478;
-      background: #eef0f5;
-    }
+#menu li {
+  margin-right: 20px;
+}
 
-    #trilha a {
-      color: #5b6478;
-    }
+#menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  display: inline-block;
+  padding: 4px 0;
+}
 
-    #trilha ol {
-      list-style: none;
-      display: flex;
-      gap: 6px;
-      padding: 0;
-      margin: 0;
-    }
+#menu a:hover {
+  text-decoration: underline;
+}
 
-    #trilha li:not(:last-child)::after {
-      content: "›";
-      margin-left: 6px;
-      color: #5b6478;
-    }
+#trilha {
+  padding: 10px 24px;
+  font-size: 13px;
+  color: var(--texto-secundario);
+  background: var(--bg-trilha);
+}
 
-    #miolo {
-      display: flex;
-      gap: 28px;
-      padding: 24px;
-      align-items: flex-start;
-    }
+#trilha a {
+  color: var(--texto-secundario);
+}
 
-    #conteudo {
-      flex: 1 1 auto;
-      min-width: 0;
-    }
+#miolo {
+  display: flex;
+  gap: 28px;
+  padding: 24px;
+  align-items: flex-start;
+}
 
-    .lateral {
-      flex: 0 0 250px;
-      background: #f2f4f9;
-      border: 1px solid #e0e4ee;
-      padding: 16px;
-      border-radius: 8px;
-      font-size: 14px;
-    }
+#conteudo {
+  flex: 1 1 auto;
+  min-width: 0;
+}
 
-    .h1-falso {
-      font-size: 28px;
-      font-weight: 800;
-      margin: 0 0 6px;
-    }
+.lateral {
+  flex: 0 0 250px;
+  background: var(--bg-lateral);
+  border: 1px solid var(--borda);
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
 
-    h3,
-    h2,
-    h6 {
-      margin: 26px 0 10px;
-    }
+.lateral a, #conteudo a {
+  color: #3b82f6;
+}
 
-    h3 {
-      font-size: 21px;
-    }
+.h1-falso {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
 
-    h2 {
-      font-size: 21px;
-    }
+h3, h2, h6 {
+  margin: 26px 0 10px;
+}
 
-    h6 {
-      font-size: 17px;
-      font-weight: 700;
-    }
+h3, h2 {
+  font-size: 21px;
+}
 
-    .cartao {
-      border: 1px solid #e0e4ee;
-      border-radius: 8px;
-      padding: 14px;
-      margin: 10px 0;
-    }
+.cartao {
+  border: 1px solid var(--borda);
+  background: var(--bg-superficie);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 10px 0;
+}
 
-    .botao {
-      display: inline-block;
-      background: #c0392b;
-      color: #fff;
-      padding: 9px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-    }
+.botao {
+  display: inline-block;
+  background: #c0392b;
+  color: #fff !important;
+  padding: 9px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  text-decoration: none;
+  user-select: none;
+}
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 14px 0;
-      font-size: 14px;
-    }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 14px 0;
+  font-size: 14px;
+}
 
-    td {
-      border: 1px solid #d9dee9;
-      padding: 9px 11px;
-    }
+td, th {
+  border: 1px solid var(--borda);
+  padding: 9px 11px;
+}
 
-    .layout td {
-      border: none;
-      padding: 0;
-      vertical-align: top;
-      width:100%;
-    }
+thead th {
+  background: var(--bg-trilha);
+}
 
-    .cab {
-      background: #eef0f5;
-      font-weight: 700;
-    }
+input[type=text],
+input[type=email],
+input[type=password] {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid var(--borda);
+  background: var(--bg-superficie);
+  color: var(--texto-principal);
+  border-radius: 5px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
 
-    input[type=text],
-    input[type=email],
-    input[type=password] {
-      width: 100%;
-      padding: 9px;
-      border: 1px solid #c3c9d6;
-      border-radius: 5px;
-      margin-bottom: 12px;
-      font-size: 14px;
-    }
+.erro {
+  color: #ef4444;
+  font-size: 13px;
+  margin: -6px 0 12px;
+}
 
-    .erro {
-      color: #c0392b;
-      font-size: 13px;
-      margin: -6px 0 12px;
-    }
+#rodape {
+  background: var(--bg-topo);
+  color: #b9c4de;
+  padding: 20px 24px;
+  font-size: 13px;
+  margin-top: 10px;
+}
 
-    #rodape {
-      background: #1f2a44;
-      color: #b9c4de;
-      padding: 20px 24px;
-      font-size: 13px;
-      margin-top: 10px;
-    }
+#rodape a {
+  color: #dbe2f2;
+}
 
-    #rodape a {
-      color: #dbe2f2;
-    }
-    .direita {
-    text-align: right;
-    }
-    .aviso {
-      background: #fff8e1;
-      border: 1px solid #f0dfa8;
-      padding: 12px 14px;
-      border-radius: 6px;
-      font-size: 14px;
-    }
+.aviso {
+  background: var(--bg-aviso);
+  border: 1px solid var(--borda-aviso);
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+}

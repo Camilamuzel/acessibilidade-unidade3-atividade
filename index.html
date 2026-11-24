@@ -10,15 +10,42 @@
 
 
 <body>
-<div class="wrap">
-  <div class="skpLinkContainer">
-    <a class="skpLink" id="skpLinkVendedor" href="#conteudo">Conteudo Principal</a>
-    <a class="skpLink" id="skpLinkConteudo" href="#nomeCliente">Falar com um vendedor</a>
-  </div>
-</div>
+    <input type="checkbox" id="btn-tema" hidden>
+    <div class="wrap">
+      <div class="skpLinkContainer">
+        <a class="skpLink" id="skpLinkVendedor" href="#conteudo">Conteudo Principal</a>
+        <a class="skpLink" id="skpLinkConteudo" href="#nomeCliente">Falar com um vendedor</a>
+      </div>
+    </div>
 
-  <div class="wrap"></div>
+   <div class="wrap"></div>
+    <script>
+  const btnTema = document.getElementById('btn-tema');
+  const htmlEl = document.documentElement;
 
+  // 1. Verifica se o usuário já salvou uma preferência antes
+  const temaSalvo = localStorage.getItem('preferencia-tema');
+  if (temaSalvo) {
+    htmlEl.classList.add(temaSalvo);
+  }
+
+  // 2. Alterna ao clicar no botão
+  btnTema.addEventListener('click', () => {
+    const sistemaEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const estaEscuro = htmlEl.classList.contains('tema-escuro') || 
+                       (!htmlEl.classList.contains('tema-claro') && sistemaEscuro);
+
+    htmlEl.classList.remove('tema-claro', 'tema-escuro');
+
+    if (estaEscuro) {
+      htmlEl.classList.add('tema-claro');
+      localStorage.setItem('preferencia-tema', 'tema-claro');
+    } else {
+      htmlEl.classList.add('tema-escuro');
+      localStorage.setItem('preferencia-tema', 'tema-escuro');
+    }
+  });
+</script>
 
   <div class="topo-flex">
     <div>
@@ -33,10 +60,10 @@
               width="34" height="34" alt="Acessar o carrinho de compras da loja">
            </a>
                 
-              <!-- Botão para alternar tema manualmente -->
-            <button type="button" id="btn-tema" aria-label="Alternar entre tema claro e escuro">
-              🌓 Alternar Tema
-            </button>
+<!-- Botão para alternar tema manualmente -->
+            <label for="btn-tema" class="botao">              
+            🌓 Alternar Tema
+            </label>
       </header>
 
       <nav id="menu" aria-label="Menu Principal">

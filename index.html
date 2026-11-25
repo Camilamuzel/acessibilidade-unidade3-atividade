@@ -2,77 +2,67 @@
 <html lang="pt-br">
 
 <head>
-  <link rel="stylesheet" href="styles.css"> 
+  <link rel="stylesheet" href="styles.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Harmonia Instrumentos Musicais</title>
 </head>
 
-
 <body>
-    <input type="checkbox" id="btn-tema" hidden>
-    <div class="wrap">
-      <div class="skpLinkContainer">
-        <a class="skpLink" id="skpLinkVendedor" href="#conteudo">Conteudo Principal</a>
-        <a class="skpLink" id="skpLinkConteudo" href="#nomeCliente">Falar com um vendedor</a>
-      </div>
+  <input type="checkbox" id="btn-tema" class="sr-only">
+
+  <div class="wrap">
+    <div class="skpLinkContainer">
+      <a class="skip-link" href="#conteudo">Conteúdo Principal</a>
+      <a class="skip-link" href="#nome">Falar com um vendedor</a>
+      <a class="skip-link" href="#secao-cadastro">Ir para o Cadastro</a>
     </div>
-
-   <div class="wrap"></div>
-    <script>
-  const btnTema = document.getElementById('btn-tema');
-  const htmlEl = document.documentElement;
-
-  // 1. Verifica se o usuário já salvou uma preferência antes
-  const temaSalvo = localStorage.getItem('preferencia-tema');
-  if (temaSalvo) {
-    htmlEl.classList.add(temaSalvo);
-  }
-
-  // 2. Alterna ao clicar no botão
-  btnTema.addEventListener('click', () => {
-    const sistemaEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const estaEscuro = htmlEl.classList.contains('tema-escuro') || 
-                       (!htmlEl.classList.contains('tema-claro') && sistemaEscuro);
-
-    htmlEl.classList.remove('tema-claro', 'tema-escuro');
-
-    if (estaEscuro) {
-      htmlEl.classList.add('tema-claro');
-      localStorage.setItem('preferencia-tema', 'tema-claro');
-    } else {
-      htmlEl.classList.add('tema-escuro');
-      localStorage.setItem('preferencia-tema', 'tema-escuro');
-    }
-  });
-</script>
+  </div>
 
   <div class="topo-flex">
     <div>
 
       <header id="topo">
+        <div class="topo-cabecalho">
+          <div>
+            <h1 class="titulo-principal">Harmonia Instrumentos Musicais</h1>
+            <h2 class="subtitulo">Tudo para o seu som desde 1998</h2>
+          </div>
 
-        <h1 class="titulo-principal">Harmonia Instrumentos Musicais</h1>
-        <h2 class="subtitulo">Tudo para o seu som desde 1998</h2>
+          <div class="topo-acoes">
+            <!-- Botão/ícone âncora para a seção de Cadastro na mesma página -->
+            <a href="#secao-cadastro" class="botao-icone">
+              <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <line x1="19" y1="8" x2="19" y2="14"></line>
+                <line x1="22" y1="11" x2="16" y2="11"></line>
+              </svg>
+              <span>Cadastro</span>
+            </a>
 
-           <a href="carrinho.html"><img
-              src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%2220%22%20r%3D%221.4%22%2F%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2220%22%20r%3D%221.4%22%2F%3E%3Cpath%20d%3D%22M1.5%202h3l2.7%2012.4a2%202%200%200%200%202%201.6h8.1a2%202%200%200%200%202-1.6L21%206H6%22%2F%3E%3C%2Fsvg%3E"
-              width="34" height="34" alt="Acessar o carrinho de compras da loja">
-           </a>
-                
-<!-- Botão para alternar tema manualmente -->
-            <label for="btn-tema" class="botao">              
-            🌓 Alternar Tema
+            <a href="carrinho.html" class="link-carrinho">
+              <img
+                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%2220%22%20r%3D%221.4%22%2F%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2220%22%20r%3D%221.4%22%2F%3E%3Cpath%20d%3D%22M1.5%202h3l2.7%2012.4a2%202%200%200%200%202%201.6h8.1a2%202%200%200%200%202-1.6L21%206H6%22%2F%3E%3C%2Fsvg%3E"
+                width="34" height="34" alt="Acessar o carrinho de compras da loja">
+            </a>
+
+            <!-- Botão para alternar tema manualmente -->
+            <label for="btn-tema" class="botao">
+              🌓 Alternar Tema
             </label>
+          </div>
+        </div>
       </header>
 
       <nav id="menu" aria-label="Menu Principal">
         <ul>
-          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html" aria-current="page">Início</a></li>
           <li><a href="guitarras.html">Guitarras</a></li>
           <li><a href="baterias.html">Baterias</a></li>
           <li><a href="teclados.html">Teclados</a></li>
-          <li><a href="contato.html">Contato</a></li>
+          <li><a href="#nome">Contato</a></li>
+          <li><a href="#secao-cadastro">Cadastro</a></li>
         </ul>
       </nav>
 
@@ -97,28 +87,26 @@
           <p>
             Confira nossa linha completa de guitarras elétricas e acústicas. Todos os modelos passam por
             revisão técnica antes do envio. Veja o catálogo completo em PDF,
-            <a href="catalogo.pdf" target="_blank">Acessar catálogo</a>.
+            <a href="catalogo.pdf" target="_blank" rel="noopener">Acessar catálogo (abre em nova aba)</a>.
           </p>
 
           <h3>Guitarras Elétricas</h3>
 
-          <form class="cartao">
-            <b>Stratocaster HSS</b><br>
+          <div class="cartao">
+            <strong>Stratocaster HSS</strong><br>
             R$ 4.290,00<br>
-            <button class="botao" onclick="adicionarCarrinho(101)">Adicionar ao carrinho</button>
-          </form>
+            <button type="button" class="botao">Adicionar Stratocaster HSS ao carrinho</button>
+          </div>
 
-          <form class="cartao">
-            <b>Les Paul Standard</b><br>
+          <div class="cartao">
+            <strong>Les Paul Standard</strong><br>
             R$ 7.150,00<br>
-            <button class="botao" onclick="adicionarCarrinho(102)">Adicionar ao carrinho</button>
-          </form>
+            <button type="button" class="botao">Adicionar Les Paul Standard ao carrinho</button>
+          </div>
 
           <h3>Baterias</h3>
 
-          <p>Kits acústicos e eletrônicos para estúdio e palco. <a href="baterias.html">Ver catálogo de baterias</a>.
-          </p>
-
+          <p>Kits acústicos e eletrônicos para estúdio e palco. <a href="baterias.html">Ver catálogo de baterias</a>.</p>
 
           <h3>Bateria Eletrônica</h3>
 
@@ -168,70 +156,135 @@
             </tbody>
           </table>
 
+          <!-- FORMULÁRIO ORIGINAL MANTIDO -->
           <h3>Fale com um vendedor</h3>
 
-          <div class="aviso">Os campos marcados com são obrigatórios.</div> <!--retirado style = color -->
+          <div class="aviso">Os campos marcados com * são obrigatórios.</div>
 
           <form action="/enviar" method="post">
-
-            <div style="font-weight:600; margin:14px 0 6px;">Nome completo *</div>
-            <input type="text" id="nome" placeholder="Digite seu nome completo" required>
-
-            <input type="email" id="email" placeholder="E-mail *" required>
-            <div class="erro">Erro.</div>
-
-            <label>Telefone</label>
-            <input type="text" id="telefone" placeholder="(00) 00000-0000" required>
-
-            <input type="password" id="senha" placeholder="Crie uma senha" required>
-            <div class="erro">Erro.</div>
-
-            <div style="font-weight:600; margin:14px 0 6px;">Turno preferido para contato *</div>
-            <div>
-              <label for="manha">Manhã</label>
-              <input type="radio" name="turno" id="manha" value="manha" required>
-              <label for="tarde">Tarde</label>
-              <input type="radio" name="turno" id="tarde" value="tarde" required>
-              <label for="noite">Noite</label>
-              <input type="radio" name="turno" id="noite" value="noite" required>
+            <div class="campo-grupo">
+              <label for="nome">Nome completo *</label>
+              <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
             </div>
 
-            <div style="font-weight:600; margin:14px 0 6px;">Assuntos de interesse</div>
-            <div>
-              <label>Guitarras</label>
-              <input type="checkbox" name="int" id="i1">
-              <label>Baterias</label>
-              <input type="checkbox" name="int" id="i2">
-              <label>Teclados</label>
-              <input type="checkbox" name="int" id="i3">
+            <div class="campo-grupo">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" placeholder="E-mail *" required>
             </div>
 
-            <p><a href="#" onclick="enviarFormulario()" class="botao">Enviar</a></p>
+            <div class="campo-grupo">
+              <label for="telefone">Telefone *</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+            </div>
 
+            <fieldset class="sub-fieldset">
+              <legend>Turno preferido para contato *</legend>
+              <div class="opcoes-inline">
+                <div class="opcao-item">
+                  <input type="radio" name="turno" id="manha" value="manha" required>
+                  <label for="manha">Manhã</label>
+                </div>
+                <div class="opcao-item">
+                  <input type="radio" name="turno" id="tarde" value="tarde" required>
+                  <label for="tarde">Tarde</label>
+                </div>
+                <div class="opcao-item">
+                  <input type="radio" name="turno" id="noite" value="noite" required>
+                  <label for="noite">Noite</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="sub-fieldset">
+              <legend>Assuntos de interesse</legend>
+              <div class="opcoes-inline">
+                <div class="opcao-item">
+                  <input type="checkbox" name="int" id="i1" value="guitarras">
+                  <label for="i1">Guitarras</label>
+                </div>
+                <div class="opcao-item">
+                  <input type="checkbox" name="int" id="i2" value="baterias">
+                  <label for="i2">Baterias</label>
+                </div>
+                <div class="opcao-item">
+                  <input type="checkbox" name="int" id="i3" value="teclados">
+                  <label for="i3">Teclados</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <p><button type="submit" class="botao">Enviar</button></p>
           </form>
 
-        </main>
+          <hr class="divisor-secao">
 
-        <aside class="lateral" aria-label="Conteúdo relacionado">
-          <div style="font-weight:700; margin-bottom:8px;">Conteúdo relacionado</div>
-          <a href="afinacao.html">Acessar afinação de guitarra</a> você aprende a afinar sua guitarra.<br><br>
-          <a href="manutencao.html">Acessar manutenção</a> sobre manutenção de instrumentos.<br><br>
-          <a href="blog.html" target="_blank">Acessar o blog</a> para ler nosso blog.
-        </aside>
+          <!-- NOVA SEÇÃO AO FINAL DA PÁGINA: FORMULÁRIO DE CADASTRO COMPLETO -->
+          <section id="secao-cadastro" aria-labelledby="titulo-cadastro">
+            <h2 id="titulo-cadastro">Cadastro de Novo Cliente</h2>
+            <p class="aviso">Os campos marcados com <strong>(obrigatório)</strong> devem ser preenchidos.</p>
 
-      </div>
+            <!-- Resumo de erros acessível no início do formulário (role="alert") -->
+            <div id="resumo-erros" class="resumo-erros" role="alert" tabindex="-1" hidden>
+              <h3 id="titulo-resumo-erros">Não foi possível concluir o cadastro. Corrija os seguintes erros:</h3>
+              <ul id="lista-resumo-erros"></ul>
+            </div>
 
-      <footer id="rodape">
-        <ul>
-          <li>Harmonia Instrumentos Musicais</li>
-          <li>CNPJ 00.000.000/0001-00</li>
-          <li><a href="termos.html">Termos de uso</a></li>
-          <li><a href="privacidade.html">Privacidade</a></li>
-        </ul>
-      </footer>
+            <!-- Mensagem de sucesso -->
+            <div id="mensagem-sucesso" class="sucesso" role="status" tabindex="-1" hidden>
+              Cadastro realizado com sucesso! Bem-vindo à Harmonia Instrumentos Musicais.
+            </div>
 
-    </div>
-  </div>
-</body>
+            <form id="form-cadastro" action="/cadastrar" method="post" novalidate>
 
-</html>
+              <!-- Campo anti-spam (Honeypot) -->
+              <div class="campo-honeypot" aria-hidden="true">
+                <label for="website-empresa">Não preencha este campo se você for humano</label>
+                <input type="text" id="website-empresa" name="website_empresa" tabindex="-1" autocomplete="off">
+              </div>
+
+              <!-- GRUPO 1: Dados Pessoais -->
+              <fieldset>
+                <legend>Dados Pessoais</legend>
+
+                <div class="campo-grupo">
+                  <label for="cad-nome">Nome completo <span class="obrigatorio">(obrigatório)</span></label>
+                  <span id="dica-nome" class="dica">Informe nome e sobrenome.</span>
+                  <input type="text" id="cad-nome" name="nome" required autocomplete="name"
+                    aria-describedby="dica-nome erro-cad-nome">
+                  <span id="erro-cad-nome" class="erro" aria-live="polite"></span>
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="cad-email">E-mail <span class="obrigatorio">(obrigatório)</span></label>
+                  <span id="dica-email" class="dica">Formato esperado: exemplo@dominio.com</span>
+                  <input type="email" id="cad-email" name="email" required autocomplete="email"
+                    aria-describedby="dica-email erro-cad-email">
+                  <span id="erro-cad-email" class="erro" aria-live="polite"></span>
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="cad-cpf">CPF <span class="obrigatorio">(obrigatório)</span></label>
+                  <span id="dica-cpf" class="dica">Formato: 000.000.000-00 ou apenas 11 números.</span>
+                  <input type="text" id="cad-cpf" name="cpf" required inputmode="numeric" maxlength="14"
+                    aria-describedby="dica-cpf erro-cad-cpf">
+                  <span id="erro-cad-cpf" class="erro" aria-live="polite"></span>
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="cad-nascimento">Data de nascimento <span class="obrigatorio">(obrigatório)</span></label>
+                  <span id="dica-nascimento" class="dica">Selecione ou digite no formato DD/MM/AAAA.</span>
+                  <input type="date" id="cad-nascimento" name="nascimento" required
+                    aria-describedby="dica-nascimento erro-cad-nascimento">
+                  <span id="erro-cad-nascimento" class="erro" aria-live="polite"></span>
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="cad-telefone">Telefone (opcional)</label>
+                  <span id="dica-telefone" class="dica">Formato: (11) 99999-9999</span>
+                  <input type="tel" id="cad-telefone" name="telefone" autocomplete="tel" maxlength="15"
+                    aria-describedby="dica-telefone erro-cad-telefone">
+                  <span id="erro-cad-telefone" class="erro" aria-live="polite"></span>
+                </div>
+              </fieldset>
+
+              

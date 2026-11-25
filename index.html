@@ -287,4 +287,131 @@
                 </div>
               </fieldset>
 
-              
+              <!-- GRUPO 2: Segurança da Conta -->
+              <fieldset>
+                <legend>Segurança da Conta</legend>
+
+                <div class="campo-grupo">
+                  <label for="cad-senha">Senha <span class="obrigatorio">(obrigatório)</span></label>
+                  <span id="dica-senha" class="dica">Mínimo de 8 caracteres, com pelo menos 1 letra maiúscula e 1 número.</span>
+                  <input type="password" id="cad-senha" name="senha" required autocomplete="new-password"
+                    aria-describedby="dica-senha erro-cad-senha">
+                  <span id="erro-cad-senha" class="erro" aria-live="polite"></span>
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="cad-confirmar-senha">Confirmação de senha <span class="obrigatorio">(obrigatório)</span></label>
+                  <span id="dica-confirmar" class="dica">Digite exatamente a mesma senha informada acima.</span>
+                  <input type="password" id="cad-confirmar-senha" name="confirmar_senha" required autocomplete="new-password"
+                    aria-describedby="dica-confirmar erro-cad-confirmar-senha">
+                  <span id="erro-cad-confirmar-senha" class="erro" aria-live="polite"></span>
+                </div>
+              </fieldset>
+
+              <!-- GRUPO 3: Perfil e Preferências -->
+              <fieldset>
+                <legend>Perfil e Preferências</legend>
+
+                <fieldset class="sub-fieldset">
+                  <legend>Gênero (opcional)</legend>
+                  <div class="opcoes-inline">
+                    <div class="opcao-item">
+                      <input type="radio" id="genero-fem" name="genero" value="feminino">
+                      <label for="genero-fem">Feminino</label>
+                    </div>
+                    <div class="opcao-item">
+                      <input type="radio" id="genero-masc" name="genero" value="masculino">
+                      <label for="genero-masc">Masculino</label>
+                    </div>
+                    <div class="opcao-item">
+                      <input type="radio" id="genero-outro" name="genero" value="outro">
+                      <label for="genero-outro">Outro / Não binário</label>
+                    </div>
+                    <div class="opcao-item">
+                      <input type="radio" id="genero-ni" name="genero" value="nao-informar">
+                      <label for="genero-ni">Prefiro não informar</label>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset class="sub-fieldset">
+                  <legend>Interesses musicais (opcional)</legend>
+                  <div class="opcoes-inline">
+                    <div class="opcao-item">
+                      <input type="checkbox" id="int-guitarras" name="interesses" value="guitarras">
+                      <label for="int-guitarras">Guitarras e Violões</label>
+                    </div>
+                    <div class="opcao-item">
+                      <input type="checkbox" id="int-baterias" name="interesses" value="baterias">
+                      <label for="int-baterias">Baterias e Percussão</label>
+                    </div>
+                    <div class="opcao-item">
+                      <input type="checkbox" id="int-teclados" name="interesses" value="teclados">
+                      <label for="int-teclados">Teclados e Sintetizadores</label>
+                    </div>
+                    <div class="opcao-item">
+                      <input type="checkbox" id="int-audio" name="interesses" value="audio">
+                      <label for="int-audio">Áudio e Gravação</label>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div class="campo-grupo">
+                  <label for="cad-origem">Como conheceu o site? (opcional)</label>
+                  <select id="cad-origem" name="origem">
+                    <option value="">Selecione uma opção...</option>
+                    <option value="busca">Buscadores (Google, Bing)</option>
+                    <option value="redes">Redes Sociais (Instagram, YouTube)</option>
+                    <option value="indicacao">Indicação de amigos ou professores</option>
+                    <option value="loja">Visita à loja física</option>
+                    <option value="outros">Outros</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <!-- GRUPO 4: Termos de Uso -->
+              <fieldset>
+                <legend>Termos e Envio</legend>
+
+                <div class="campo-grupo">
+                  <div class="opcao-item">
+                    <input type="checkbox" id="cad-termos" name="termos" required aria-describedby="erro-cad-termos">
+                    <label for="cad-termos">
+                      Li e aceito os <a href="termos.html" target="_blank" rel="noopener">Termos de Uso (abre em nova aba)</a>
+                      e a <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade (abre em nova aba)</a>.
+                      <span class="obrigatorio">(obrigatório)</span>
+                    </label>
+                  </div>
+                  <span id="erro-cad-termos" class="erro" aria-live="polite"></span>
+                </div>
+
+                <button type="submit" class="botao">Concluir Cadastro</button>
+              </fieldset>
+
+            </form>
+          </section>
+
+        </main>
+
+        <aside class="lateral" aria-label="Conteúdo relacionado">
+          <h2 style="font-size: 16px; margin-top: 0;">Conteúdo relacionado</h2>
+          <ul>
+            <li><a href="afinacao.html">Acessar afinação de guitarra</a> para aprender a afinar sua guitarra.</li>
+            <li><a href="manutencao.html">Acessar manutenção</a> sobre manutenção de instrumentos.</li>
+            <li><a href="blog.html" target="_blank" rel="noopener">Acessar o blog (abre em nova aba)</a> para ler nosso blog.</li>
+          </ul>
+        </aside>
+
+      </div>
+
+      <footer id="rodape">
+        <ul>
+          <li>Harmonia Instrumentos Musicais</li>
+          <li>CNPJ 00.000.000/0001-00</li>
+          <li><a href="termos.html">Termos de uso</a></li>
+          <li><a href="privacidade.html">Privacidade</a></li>
+        </ul>
+      </footer>
+
+    </div>
+  </div>

@@ -415,3 +415,229 @@
 
     </div>
   </div>
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('form-cadastro');
+      const resumoErros = document.getElementById('resumo-erros');
+      const listaResumoErros = document.getElementById('lista-resumo-erros');
+      const mensagemSucesso = document.getElementById('mensagem-sucesso');
+
+      // Validação matemática de CPF
+      function validarCPF(cpfStr) {
+        const cpf = cpfStr.replace(/\D/g, '');
+        if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+
+        let soma = 0;
+        for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
+        let resto = (soma * 10) % 11;
+        if (resto === 10 || resto === 11) resto = 0;
+        if (resto !== parseInt(cpf.charAt(9))) return false;
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
+        resto = (soma * 10) % 11;
+        if (resto === 10 || resto === 11) resto = 0;
+        return resto === parseInt(cpf.charAt(10));
+      }
+
+      // Máscaras de digitação
+      document.getElementById('cad-cpf').addEventListener('input', (e) => {
+        let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+        v = v.replace(/(\d{3})(\d)/, '$1.$2');
+        v = v.replace(/(\d{3})(\d)/, '$1.$2');
+        v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        e.target.value = v;
+      });
+
+      document.getElementById('cad-telefone').addEventListener('input', (e) => {
+        let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+        if (v.length > 10) {
+          v = v.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        } else if (v.length > 5) {
+          v = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+        } else if (v.length > 2) {
+          v = v.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+        }
+        e.target.value = v;
+      });
+
+      const validadores = {
+        'cad-nome': (valor) => {
+          const limpo = valor.trim();
+          if (!limpo) return 'O campo Nome completo é obrigatório.';
+          if (limpo.split(/\s+/).length < 2) return 'Informe seu nome e pelo menos um sobrenome.';
+          return '';
+        },
+        'cad-email': (valor) => {
+          const limpo = valor.trim();
+          if (!limpo) return 'O campo E-mail é obrigatório.';
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(limpo)) {
+            return 'Digite um e-mail válido no formato exemplo@dominio.com.';
+          }
+          return '';
+        },
+        'cad-cpf': (valor) => {
+          const limpo = valor.trim();
+          if (!limpo) return 'O campo CPF é obrigatório.';
+          if (!validarCPF(limpo)) return 'CPF inválido. Verifique os 11 dígitos informados.';
+          return '';
+        },
+        'cad-nascimento': (valor) => {
+          if (!valor) return 'O campo Data de nascimento é obrigatório.';
+          const data = new Date(valor + 'T00:00:00');
+          const hoje = new Date();
+          if (isNaN(data.getTime()) || data >= hoje) {
+            return 'Informe uma data de nascimento válida no passado.';
+          }
+          return '';
+        },
+        'cad-telefone': (valor) => {
+          const digitos = valor.replace(/\D/g, '');
+          if (digitos.length > 0 && (digitos.length < 10 || digitos.length > 11)) {
+            return 'Telefone inválido. Informe DDD + número (10 ou 11 dígitos) ou deixe em branco.';
+          }
+          return '';
+        },
+        'cad-senha': (valor) => {
+          if (!valor) return 'O campo Senha é obrigatório.';
+          if (valor.length < 8 || !/[A-Z]/.test(valor) || !/\d/.test(valor)) {
+            return 'A senha deve ter no mínimo 8 caracteres, 1 letra maiúscula e 1 número.';
+          }
+          return '';
+        },
+        'cad-confirmar-senha': (valor) => {
+          const senhaOriginal = document.getElementById('cad-senha').value;
+          if (!valor) return 'O campo Confirmação de senha é obrigatório.';
+          if (valor !== senhaOriginal) return 'As senhas digitadas não coincidem.';
+          return '';
+        },
+        'cad-termos': (_, elemento) => {
+          if (!elemento.checked) {
+            return 'Você precisa aceitar os Termos de Uso e a Política de Privacidade.';
+          }
+          return '';
+        }
+      };
+
+      const nomesAmigaveis = {
+        'cad-nome': 'Nome completo',
+        'cad-email': 'E-mail',
+        'cad-cpf': 'CPF',
+        'cad-nascimento': 'Data de nascimento',
+        'cad-telefone': 'Telefone',
+        'cad-senha': 'Senha',
+        'cad-confirmar-senha': 'Confirmação de senha',
+        'cad-termos': 'Aceite dos termos'
+      };
+
+      function aplicarEstadoCampo(id, mensagemErro) {
+        const campo = document.getElementById(id);
+        const spanErro = document.getElementById(`erro-${id}`);
+        if (!campo || !spanErro) return;
+
+        if (mensagemErro) {
+          campo.setAttribute('aria-invalid', 'true');
+          campo.classList.add('campo-invalido');
+          spanErro.textContent = mensagemErro;
+        } else {
+          campo.setAttribute('aria-invalid', 'false');
+          campo.classList.remove('campo-invalido');
+          spanErro.textContent = '';
+        }
+      }
+
+      function validarCampo(id) {
+        const campo = document.getElementById(id);
+        if (!campo || !validadores[id]) return '';
+        const erro = validadores[id](campo.value, campo);
+        aplicarEstadoCampo(id, erro);
+        return erro;
+      }
+
+      // Validação ao perder o foco (on blur) e remoção ao corrigir
+      Object.keys(validadores).forEach((id) => {
+        const campo = document.getElementById(id);
+        if (!campo) return;
+
+        campo.addEventListener('blur', () => {
+          validarCampo(id);
+        });
+
+        const eventoCorrecao = campo.type === 'checkbox' ? 'change' : 'input';
+        campo.addEventListener(eventoCorrecao, () => {
+          if (campo.getAttribute('aria-invalid') === 'true') {
+            validarCampo(id);
+          }
+          if (id === 'cad-senha' && document.getElementById('cad-confirmar-senha').value) {
+            validarCampo('cad-confirmar-senha');
+          }
+        });
+      });
+
+      // Validação no envio: foca APENAS no resumo de erros no início do formulário (não sobe para o topo da página)
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        mensagemSucesso.hidden = true;
+
+        const honeypot = document.getElementById('website-empresa').value;
+        if (honeypot.trim() !== '') return;
+
+        const errosEncontrados = [];
+
+        Object.keys(validadores).forEach((id) => {
+          const mensagemErro = validarCampo(id);
+          if (mensagemErro) {
+            errosEncontrados.push({
+              id,
+              nome: nomesAmigaveis[id],
+              mensagem: mensagemErro
+            });
+          }
+        });
+
+        if (errosEncontrados.length > 0) {
+          listaResumoErros.innerHTML = '';
+          errosEncontrados.forEach((erro) => {
+            const li = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = `#${erro.id}`;
+            link.textContent = `${erro.nome}: ${erro.mensagem}`;
+            link.addEventListener('click', (ev) => {
+              ev.preventDefault();
+              const alvo = document.getElementById(erro.id);
+              if (alvo) {
+                alvo.focus({ preventScroll: true });
+                alvo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            });
+            li.appendChild(link);
+            listaResumoErros.appendChild(li);
+          });
+
+          resumoErros.hidden = false;
+          // Foca e rola apenas até o resumo no início do formulário (sem voltar ao topo da página)
+          resumoErros.focus({ preventScroll: true });
+          resumoErros.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          resumoErros.hidden = true;
+          listaResumoErros.innerHTML = '';
+          form.reset();
+
+          Object.keys(validadores).forEach((id) => {
+            const campo = document.getElementById(id);
+            if (campo) {
+              campo.removeAttribute('aria-invalid');
+              campo.classList.remove('campo-invalido');
+            }
+          });
+
+          mensagemSucesso.hidden = false;
+          mensagemSucesso.focus({ preventScroll: true });
+          mensagemSucesso.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

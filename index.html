@@ -74,6 +74,54 @@
 
         <main id="conteudo">
 
+          <!-- 1. BANNER COM ANIMAÇÃO DE FADE-IN AO CARREGAR -->
+          <section class="banner-destaque" aria-labelledby="titulo-banner">
+            <h2 id="titulo-banner">Festival de Timbres 2026</h2>
+            <p>Até 15% de desconto à vista em guitarras, baterias e teclados selecionados com revisão técnica inclusa.</p>
+            <a href="#carrossel-ofertas" class="botao">Ver destaques da semana</a>
+          </section>
+
+          <!-- 2. CARROSSEL ACESSÍVEL COM TRANSIÇÃO SUAVE -->
+          <section id="carrossel-ofertas" class="carrossel" aria-roledescription="carrossel" aria-label="Destaques da loja">
+            <div class="carrossel-cabecalho">
+              <h2 id="titulo-carrossel">Destaques da Semana</h2>
+              <div class="carrossel-controles">
+                <button type="button" id="btn-slide-anterior" class="botao-carrossel" aria-label="Slide anterior">
+                  ◀ Anterior
+                </button>
+                <button type="button" id="btn-slide-proximo" class="botao-carrossel" aria-label="Próximo slide">
+                  Próximo ▶
+                </button>
+              </div>
+            </div>
+
+            <div class="carrossel-janela">
+              <div class="carrossel-trilho" id="carrossel-trilho">
+                <article class="carrossel-slide" role="group" aria-roledescription="slide" aria-label="Slide 1 de 3">
+                  <h3>Linha Fender &amp; Squier</h3>
+                  <p>Modelos Stratocaster e Telecaster regulados por luthier antes do envio.</p>
+                </article>
+
+                <article class="carrossel-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 de 3" aria-hidden="true">
+                  <h3>Baterias Eletrônicas Mesh</h3>
+                  <p>Estude em apartamento sem ruído com resposta realista de baqueta.</p>
+                </article>
+
+                <article class="carrossel-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 de 3" aria-hidden="true">
+                  <h3>Sintetizadores e Controladores</h3>
+                  <p>Teclas semipesadas e integração direta com sua DAW favorita.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="carrossel-indicadores" role="tablist" aria-label="Escolher slide">
+              <button type="button" class="indicador ativo" role="tab" aria-selected="true" aria-label="Ir para slide 1" data-slide="0"></button>
+              <button type="button" class="indicador" role="tab" aria-selected="false" aria-label="Ir para slide 2" data-slide="1"></button>
+              <button type="button" class="indicador" role="tab" aria-selected="false" aria-label="Ir para slide 3" data-slide="2"></button>
+            </div>
+            <p id="status-carrossel" class="sr-only" aria-live="polite">Exibindo slide 1 de 3</p>
+          </section>
+
           <h2 class="h1-falso">Loja de Instrumentos</h2>
 
           <p>

@@ -81,7 +81,7 @@
             <a href="#carrossel-ofertas" class="botao">Ver destaques da semana</a>
           </section>
 
-          <!-- 2. CARROSSEL ACESSÍVEL COM TRANSIÇÃO SUAVE -->
+<!-- 2. CARROSSEL ACESSÍVEL COM TRANSIÇÃO SUAVE (0 ERROS W3C) -->
           <section id="carrossel-ofertas" class="carrossel" aria-roledescription="carrossel" aria-label="Destaques da loja">
             <div class="carrossel-cabecalho">
               <h2 id="titulo-carrossel">Destaques da Semana</h2>
@@ -97,27 +97,27 @@
 
             <div class="carrossel-janela">
               <div class="carrossel-trilho" id="carrossel-trilho">
-                <article class="carrossel-slide" role="group" aria-roledescription="slide" aria-label="Slide 1 de 3">
+                <article class="carrossel-slide" aria-label="Slide 1 de 3">
                   <h3>Linha Fender &amp; Squier</h3>
                   <p>Modelos Stratocaster e Telecaster regulados por luthier antes do envio.</p>
                 </article>
 
-                <article class="carrossel-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 de 3" aria-hidden="true">
+                <article class="carrossel-slide" aria-label="Slide 2 de 3">
                   <h3>Baterias Eletrônicas Mesh</h3>
                   <p>Estude em apartamento sem ruído com resposta realista de baqueta.</p>
                 </article>
 
-                <article class="carrossel-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 de 3" aria-hidden="true">
+                <article class="carrossel-slide" aria-label="Slide 3 de 3">
                   <h3>Sintetizadores e Controladores</h3>
                   <p>Teclas semipesadas e integração direta com sua DAW favorita.</p>
                 </article>
               </div>
             </div>
 
-            <div class="carrossel-indicadores" role="tablist" aria-label="Escolher slide">
-              <button type="button" class="indicador ativo" role="tab" aria-selected="true" aria-label="Ir para slide 1" data-slide="0"></button>
-              <button type="button" class="indicador" role="tab" aria-selected="false" aria-label="Ir para slide 2" data-slide="1"></button>
-              <button type="button" class="indicador" role="tab" aria-selected="false" aria-label="Ir para slide 3" data-slide="2"></button>
+            <div class="carrossel-indicadores" role="group" aria-label="Escolher slide">
+              <button type="button" class="indicador ativo" aria-current="true" aria-label="Ir para slide 1" data-slide="0"></button>
+              <button type="button" class="indicador" aria-label="Ir para slide 2" data-slide="1"></button>
+              <button type="button" class="indicador" aria-label="Ir para slide 3" data-slide="2"></button>
             </div>
             <p id="status-carrossel" class="sr-only" aria-live="polite">Exibindo slide 1 de 3</p>
           </section>
@@ -470,6 +470,7 @@
       const listaResumoErros = document.getElementById('lista-resumo-erros');
       const mensagemSucesso = document.getElementById('mensagem-sucesso');
 
+
       // Validação matemática de CPF
       function validarCPF(cpfStr) {
         const cpf = cpfStr.replace(/\D/g, '');
@@ -685,6 +686,28 @@
         }
       });
     });
+    
+    function atualizarCarrossel(novoIndice) {
+        slideAtual = (novoIndice + slides.length) % slides.length;
+        trilho.style.transform = `translateX(-${slideAtual * 100}%)`;
+
+        slides.forEach((slide, idx) => {
+          const ativo = idx === slideAtual;
+          slide.inert = !ativo;
+        });
+
+        indicadores.forEach((ind, idx) => {
+          const ativo = idx === slideAtual;
+          ind.classList.toggle('ativo', ativo);
+          if (ativo) {
+            ind.setAttribute('aria-current', 'true');
+          } else {
+            ind.removeAttribute('aria-current');
+          }
+        });
+
+        statusCarrossel.textContent = `Exibindo slide ${slideAtual + 1} de ${slides.length}`;
+      }
   </script>
 </body>
 

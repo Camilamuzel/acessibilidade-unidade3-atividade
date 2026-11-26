@@ -249,3 +249,134 @@ input[type=password] {
   border-radius: 6px;
   font-size: 14px;
 }
+
+/* =========================================================
+   RESPONSIVIDADE (MOBILE-FIRST / MEDIA QUERIES & REFLOW)
+   ========================================================= */
+
+/* Tipografia fluida que se adapta ao tamanho da tela */
+.titulo-principal {
+  font-size: clamp(22px, 4vw, 30px);
+  margin: 0 0 4px;
+}
+
+.h1-falso {
+  font-size: clamp(22px, 3.5vw, 28px);
+}
+
+/* Garante quebra de linha no menu e trilha em qualquer largura */
+#menu ul {
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+#menu li {
+  margin-right: 0;
+}
+
+#menu a {
+  padding: 8px 4px; /* Área de toque mais confortável */
+}
+
+#trilha {
+  line-height: 1.6;
+}
+
+/* Contêiner para rolagem horizontal segura apenas na tabela */
+.tabela-responsiva {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 14px 0;
+}
+
+.tabela-responsiva table {
+  margin: 0;
+  min-width: 480px; /* Evita esmagar as colunas no celular */
+}
+
+/* Tablets e Celulares (abaixo de 768px) */
+@media (max-width: 768px) {
+  #topo {
+    padding: 16px;
+  }
+
+  .topo-cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topo-acoes {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  #menu,
+  #trilha,
+  #rodape {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Empilha o conteúdo principal e a barra lateral */
+  #miolo {
+    flex-direction: column;
+    padding: 16px;
+    gap: 20px;
+  }
+
+  #conteudo,
+  .lateral {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  /* Ajusta espaçamento do banner e carrossel */
+  .banner-destaque {
+    padding: 18px;
+  }
+
+  .carrossel {
+    padding: 14px;
+  }
+
+  .carrossel-slide {
+    padding: 16px;
+  }
+}
+
+/* Celulares pequenos (abaixo de 480px) */
+@media (max-width: 480px) {
+  .botao,
+  .botao-icone,
+  .botao-secundario {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .carrossel-cabecalho {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .carrossel-controles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .indicador {
+    width: 22px;
+    height: 22px;
+  }
+
+  fieldset {
+    padding: 14px 12px;
+  }
+
+  .opcoes-inline {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

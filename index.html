@@ -11,11 +11,13 @@
 <body>
   <input type="checkbox" id="btn-tema" class="sr-only">
 
+  <!-- Região viva para anunciar mudança de página da SPA aos leitores de tela -->
+  <div id="anuncio-rota" class="sr-only" aria-live="polite"></div>
+
   <div class="wrap">
     <div class="skpLinkContainer">
-      <a class="skip-link" href="#conteudo">Conteúdo Principal</a>
-      <a class="skip-link" href="#nome">Falar com um vendedor</a>
-      <a class="skip-link" href="#secao-cadastro">Ir para o Cadastro</a>
+      <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+      <a class="skip-link" href="#contato">Ir para Contato e Cadastro</a>
     </div>
   </div>
 
@@ -30,8 +32,8 @@
           </div>
 
           <div class="topo-acoes">
-            <!-- Botão/ícone âncora para a seção de Cadastro na mesma página -->
-            <a href="#secao-cadastro" class="botao-icone">
+            <!-- Botão/ícone que leva para a tela de Contato/Cadastro da SPA -->
+            <a href="#contato" class="botao-icone" data-rota="contato">
               <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
@@ -47,7 +49,6 @@
                 width="34" height="34" alt="Acessar o carrinho de compras da loja">
             </a>
 
-            <!-- Botão para alternar tema manualmente -->
             <label for="btn-tema" class="botao">
               🌓 Alternar Tema
             </label>
@@ -57,229 +58,188 @@
 
       <nav id="menu" aria-label="Menu Principal">
         <ul>
-          <li><a href="index.html" aria-current="page">Início</a></li>
+          <li><a href="#home" id="nav-home" data-rota="home" aria-current="page">Início</a></li>
           <li><a href="guitarras.html">Guitarras</a></li>
           <li><a href="baterias.html">Baterias</a></li>
           <li><a href="teclados.html">Teclados</a></li>
-          <li><a href="#nome">Contato</a></li>
-          <li><a href="#secao-cadastro">Cadastro</a></li>
+          <li><a href="#contato" id="nav-contato" data-rota="contato">Contato e Cadastro</a></li>
         </ul>
       </nav>
 
+      <!-- Trilha de navegação dinâmica -->
       <nav id="trilha" aria-label="Trilha de navegação">
-        <a href="index.html">Início</a> &gt; <a href="guitarras.html">Guitarras</a> &gt; Guitarras Elétricas
+        <a href="#home" data-rota="home">Início</a> &gt; <span id="trilha-atual">Vitrine de Instrumentos</span>
       </nav>
 
       <div id="miolo">
 
         <main id="conteudo">
 
-          <!-- 1. BANNER COM ANIMAÇÃO DE FADE-IN AO CARREGAR -->
-          <section class="banner-destaque" aria-labelledby="titulo-banner">
-            <h2 id="titulo-banner">Festival de Timbres 2026</h2>
-            <p>Até 15% de desconto à vista em guitarras, baterias e teclados selecionados com revisão técnica inclusa.</p>
-            <a href="#carrossel-ofertas" class="botao">Ver destaques da semana</a>
-          </section>
+          <!-- =========================================================
+               TELA 1: HOME PAGE (SEM FORMULÁRIOS)
+               ========================================================= -->
+          <div id="view-home">
 
-<!-- 2. CARROSSEL ACESSÍVEL COM TRANSIÇÃO SUAVE (0 ERROS W3C) -->
-          <section id="carrossel-ofertas" class="carrossel" aria-roledescription="carrossel" aria-label="Destaques da loja">
-            <div class="carrossel-cabecalho">
-              <h2 id="titulo-carrossel">Destaques da Semana</h2>
-              <div class="carrossel-controles">
-                <button type="button" id="btn-slide-anterior" class="botao-carrossel" aria-label="Slide anterior">
-                  ◀ Anterior
-                </button>
-                <button type="button" id="btn-slide-proximo" class="botao-carrossel" aria-label="Próximo slide">
-                  Próximo ▶
-                </button>
+            <!-- Banner com animação fade-in -->
+            <section class="banner-destaque" aria-labelledby="titulo-banner">
+              <h2 id="titulo-banner" tabindex="-1">Festival de Timbres 2026</h2>
+              <p>Até 15% de desconto à vista em guitarras, baterias e teclados selecionados com revisão técnica inclusa.</p>
+              <a href="#carrossel-ofertas" class="botao">Ver destaques da semana</a>
+            </section>
+
+            <!-- Carrossel acessível -->
+            <section id="carrossel-ofertas" class="carrossel" aria-roledescription="carrossel" aria-label="Destaques da loja">
+              <div class="carrossel-cabecalho">
+                <h2 id="titulo-carrossel">Destaques da Semana</h2>
+                <div class="carrossel-controles">
+                  <button type="button" id="btn-slide-anterior" class="botao-carrossel" aria-label="Slide anterior">
+                    ◀ Anterior
+                  </button>
+                  <button type="button" id="btn-slide-proximo" class="botao-carrossel" aria-label="Próximo slide">
+                    Próximo ▶
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div class="carrossel-janela">
-              <div class="carrossel-trilho" id="carrossel-trilho">
-                <article class="carrossel-slide" aria-label="Slide 1 de 3">
-                  <h3>Linha Fender &amp; Squier</h3>
-                  <p>Modelos Stratocaster e Telecaster regulados por luthier antes do envio.</p>
-                </article>
+              <div class="carrossel-janela">
+                <div class="carrossel-trilho" id="carrossel-trilho">
+                  <article class="carrossel-slide" aria-label="Slide 1 de 3">
+                    <h3>Linha Fender &amp; Squier</h3>
+                    <p>Modelos Stratocaster e Telecaster regulados por luthier antes do envio.</p>
+                  </article>
 
-                <article class="carrossel-slide" aria-label="Slide 2 de 3">
-                  <h3>Baterias Eletrônicas Mesh</h3>
-                  <p>Estude em apartamento sem ruído com resposta realista de baqueta.</p>
-                </article>
+                  <article class="carrossel-slide" aria-label="Slide 2 de 3">
+                    <h3>Baterias Eletrônicas Mesh</h3>
+                    <p>Estude em apartamento sem ruído com resposta realista de baqueta.</p>
+                  </article>
 
-                <article class="carrossel-slide" aria-label="Slide 3 de 3">
-                  <h3>Sintetizadores e Controladores</h3>
-                  <p>Teclas semipesadas e integração direta com sua DAW favorita.</p>
-                </article>
+                  <article class="carrossel-slide" aria-label="Slide 3 de 3">
+                    <h3>Sintetizadores e Controladores</h3>
+                    <p>Teclas semipesadas e integração direta com sua DAW favorita.</p>
+                  </article>
+                </div>
               </div>
+
+              <div class="carrossel-indicadores" role="group" aria-label="Escolher slide">
+                <button type="button" class="indicador ativo" aria-current="true" aria-label="Ir para slide 1" data-slide="0"></button>
+                <button type="button" class="indicador" aria-label="Ir para slide 2" data-slide="1"></button>
+                <button type="button" class="indicador" aria-label="Ir para slide 3" data-slide="2"></button>
+              </div>
+              <p id="status-carrossel" class="sr-only" aria-live="polite">Exibindo slide 1 de 3</p>
+            </section>
+
+            <h2 class="h1-falso">Loja de Instrumentos</h2>
+
+            <p>
+              Bem-vindo à nossa loja. Trabalhamos com <strong>as melhores marcas</strong> do mercado e oferecemos
+              <em>garantia estendida</em> em todos os produtos. Nossa nova <ins>política de trocas</ins> entrou em vigor
+              neste mês. Para saber mais, <a href="politica.html">Acessar nossa Política</a>.
+            </p>
+
+            <h3>Guitarras</h3>
+
+            <p>
+              Confira nossa linha completa de guitarras elétricas e acústicas. Todos os modelos passam por
+              revisão técnica antes do envio. Veja o catálogo completo em PDF,
+              <a href="catalogo.pdf" target="_blank" rel="noopener">Acessar catálogo (abre em nova aba)</a>.
+            </p>
+
+            <h3>Guitarras Elétricas</h3>
+
+            <div class="cartao">
+              <strong>Stratocaster HSS</strong><br>
+              R$ 4.290,00<br>
+              <button type="button" class="botao">Adicionar Stratocaster HSS ao carrinho</button>
             </div>
 
-            <div class="carrossel-indicadores" role="group" aria-label="Escolher slide">
-              <button type="button" class="indicador ativo" aria-current="true" aria-label="Ir para slide 1" data-slide="0"></button>
-              <button type="button" class="indicador" aria-label="Ir para slide 2" data-slide="1"></button>
-              <button type="button" class="indicador" aria-label="Ir para slide 3" data-slide="2"></button>
+            <div class="cartao">
+              <strong>Les Paul Standard</strong><br>
+              R$ 7.150,00<br>
+              <button type="button" class="botao">Adicionar Les Paul Standard ao carrinho</button>
             </div>
-            <p id="status-carrossel" class="sr-only" aria-live="polite">Exibindo slide 1 de 3</p>
-          </section>
 
-          <h2 class="h1-falso">Loja de Instrumentos</h2>
+            <h3>Baterias</h3>
 
-          <p>
-            Bem-vindo à nossa loja. Trabalhamos com <strong>as melhores marcas</strong> do mercado e oferecemos
-            <em>garantia estendida</em> em todos os produtos. Nossa nova <ins>política de trocas</ins> entrou em vigor
-            neste mês. Para saber mais, <a href="politica.html">Acessar nossa Política</a>.
-          </p>
+            <p>Kits acústicos e eletrônicos para estúdio e palco. <a href="baterias.html">Ver catálogo de baterias</a>.</p>
 
-          <h3>Guitarras</h3>
+            <h3>Bateria Eletrônica</h3>
 
-          <p>
-            Confira nossa linha completa de guitarras elétricas e acústicas. Todos os modelos passam por
-            revisão técnica antes do envio. Veja o catálogo completo em PDF,
-            <a href="catalogo.pdf" target="_blank" rel="noopener">Acessar catálogo (abre em nova aba)</a>.
-          </p>
+            <p>Modelos com pads de mesh e módulo de sons integrado.</p>
 
-          <h3>Guitarras Elétricas</h3>
+            <h2>Categorias em destaque</h2>
 
-          <div class="cartao">
-            <strong>Stratocaster HSS</strong><br>
-            R$ 4.290,00<br>
-            <button type="button" class="botao">Adicionar Stratocaster HSS ao carrinho</button>
+            <ul class="lista-falsa">
+              <li>Guitarras e Baixos</li>
+              <li>Baterias e Percussão</li>
+              <li>Teclados e Sintetizadores</li>
+              <li>Microfones</li>
+              <li>Acessórios</li>
+            </ul>
+
+            <h2>Comparativo de modelos</h2>
+
+            <div class="tabela-responsiva" tabindex="0" role="region" aria-label="Tabela comparativa de guitarras">
+              <table>
+                <caption>Comparativo de guitarras elétricas — especificações e preços</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Captadores</th>
+                    <th scope="col">Escala</th>
+                    <th scope="col">Preço</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Stratocaster HSS</th>
+                    <td>2 single + 1 humbucker</td>
+                    <td>648 mm</td>
+                    <td>R$ 4.290,00</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Les Paul Standard</th>
+                    <td>2 humbuckers</td>
+                    <td>628 mm</td>
+                    <td>R$ 7.150,00</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Telecaster Vintage</th>
+                    <td>2 single coil</td>
+                    <td>648 mm</td>
+                    <td>R$ 3.980,00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="cartao" style="margin-top: 24px;">
+              <strong>Precisa de atendimento ou quer criar sua conta?</strong>
+              <p>Acesse nossa página exclusiva de contato e cadastro completo.</p>
+              <a href="#contato" class="botao" data-rota="contato">Ir para Contato e Cadastro</a>
+            </div>
+
           </div>
 
-          <div class="cartao">
-            <strong>Les Paul Standard</strong><br>
-            R$ 7.150,00<br>
-            <button type="button" class="botao">Adicionar Les Paul Standard ao carrinho</button>
-          </div>
-
-          <h3>Baterias</h3>
-
-          <p>Kits acústicos e eletrônicos para estúdio e palco. <a href="baterias.html">Ver catálogo de baterias</a>.</p>
-
-          <h3>Bateria Eletrônica</h3>
-
-          <p>Modelos com pads de mesh e módulo de sons integrado.</p>
-
-          <h2>Categorias em destaque</h2>
-
-          <ul class="lista-falsa">
-            <li>Guitarras e Baixos</li>
-            <li>Baterias e Percussão</li>
-            <li>Teclados e Sintetizadores</li>
-            <li>Microfones</li>
-            <li>Acessórios</li>
-          </ul>
-
-          <h2>Comparativo de modelos</h2>
-
-          <table>
-            <caption>Comparativo de guitarras elétricas — especificações e preços</caption>
-            <thead>
-              <tr>
-                <th scope="col">Modelo</th>
-                <th scope="col">Captadores</th>
-                <th scope="col">Escala</th>
-                <th scope="col">Preço</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Stratocaster HSS</th>
-                <td>2 single + 1 humbucker</td>
-                <td>648 mm</td>
-                <td>R$ 4.290,00</td>
-              </tr>
-              <tr>
-                <th scope="row">Les Paul Standard</th>
-                <td>2 humbuckers</td>
-                <td>628 mm</td>
-                <td>R$ 7.150,00</td>
-              </tr>
-              <tr>
-                <th scope="row">Telecaster Vintage</th>
-                <td>2 single coil</td>
-                <td>648 mm</td>
-                <td>R$ 3.980,00</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- FORMULÁRIO ORIGINAL MANTIDO -->
-          <h3>Fale com um vendedor</h3>
-
-          <div class="aviso">Os campos marcados com * são obrigatórios.</div>
-
-          <form action="/enviar" method="post">
-            <div class="campo-grupo">
-              <label for="nome">Nome completo *</label>
-              <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+          <!-- =========================================================
+               TELA 2: PÁGINA DE CONTATO E CADASTRO (SPA)
+               ========================================================= -->
+          <div id="view-contato" hidden>
+            <div class="cabecalho-subpagina">
+              <h2 id="titulo-pagina-contato" class="h1-falso" tabindex="-1">Contato e Cadastro</h2>
+              <a href="#home" class="botao-secundario" data-rota="home">← Voltar para a loja</a>
             </div>
 
-            <div class="campo-grupo">
-              <label for="email">E-mail *</label>
-              <input type="email" id="email" name="email" placeholder="E-mail *" required>
-            </div>
-
-            <div class="campo-grupo">
-              <label for="telefone">Telefone *</label>
-              <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
-            </div>
-
-            <fieldset class="sub-fieldset">
-              <legend>Turno preferido para contato *</legend>
-              <div class="opcoes-inline">
-                <div class="opcao-item">
-                  <input type="radio" name="turno" id="manha" value="manha" required>
-                  <label for="manha">Manhã</label>
-                </div>
-                <div class="opcao-item">
-                  <input type="radio" name="turno" id="tarde" value="tarde" required>
-                  <label for="tarde">Tarde</label>
-                </div>
-                <div class="opcao-item">
-                  <input type="radio" name="turno" id="noite" value="noite" required>
-                  <label for="noite">Noite</label>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset class="sub-fieldset">
-              <legend>Assuntos de interesse</legend>
-              <div class="opcoes-inline">
-                <div class="opcao-item">
-                  <input type="checkbox" name="int" id="i1" value="guitarras">
-                  <label for="i1">Guitarras</label>
-                </div>
-                <div class="opcao-item">
-                  <input type="checkbox" name="int" id="i2" value="baterias">
-                  <label for="i2">Baterias</label>
-                </div>
-                <div class="opcao-item">
-                  <input type="checkbox" name="int" id="i3" value="teclados">
-                  <label for="i3">Teclados</label>
-                </div>
-              </div>
-            </fieldset>
-
-            <p><button type="submit" class="botao">Enviar</button></p>
-          </form>
-
-          <hr class="divisor-secao">
-
-          <!-- NOVA SEÇÃO AO FINAL DA PÁGINA: FORMULÁRIO DE CADASTRO COMPLETO -->
-          <section id="secao-cadastro" aria-labelledby="titulo-cadastro">
-            <h2 id="titulo-cadastro">Cadastro de Novo Cliente</h2>
             <p class="aviso">Os campos marcados com <strong>(obrigatório)</strong> devem ser preenchidos.</p>
 
-            <!-- Resumo de erros acessível no início do formulário (role="alert") -->
+            <!-- Resumo de erros acessível no início do formulário -->
             <div id="resumo-erros" class="resumo-erros" role="alert" tabindex="-1" hidden>
-              <h3 id="titulo-resumo-erros">Não foi possível concluir o cadastro. Corrija os seguintes erros:</h3>
+              <h3 id="titulo-resumo-erros">Não foi possível concluir o envio. Corrija os seguintes erros:</h3>
               <ul id="lista-resumo-erros"></ul>
             </div>
 
             <!-- Mensagem de sucesso -->
             <div id="mensagem-sucesso" class="sucesso" role="status" tabindex="-1" hidden>
-              Cadastro realizado com sucesso! Bem-vindo à Harmonia Instrumentos Musicais.
+              Cadastro e mensagem enviados com sucesso! Nossa equipe responderá em breve.
             </div>
 
             <form id="form-cadastro" action="/cadastrar" method="post" novalidate>
@@ -356,7 +316,7 @@
                 </div>
               </fieldset>
 
-              <!-- GRUPO 3: Perfil e Preferências -->
+              <!-- GRUPO 3: Perfil, Atendimento e Preferências -->
               <fieldset>
                 <legend>Perfil e Preferências</legend>
 
@@ -415,6 +375,12 @@
                     <option value="outros">Outros</option>
                   </select>
                 </div>
+
+                <div class="campo-grupo">
+                  <label for="cad-mensagem">Mensagem ou dúvida para o vendedor (opcional)</label>
+                  <span id="dica-mensagem" class="dica">Conte qual instrumento você procura ou deixe sua dúvida.</span>
+                  <textarea id="cad-mensagem" name="mensagem" rows="4" aria-describedby="dica-mensagem"></textarea>
+                </div>
               </fieldset>
 
               <!-- GRUPO 4: Termos de Uso -->
@@ -433,11 +399,11 @@
                   <span id="erro-cad-termos" class="erro" aria-live="polite"></span>
                 </div>
 
-                <button type="submit" class="botao">Concluir Cadastro</button>
+                <button type="submit" class="botao">Concluir Cadastro e Enviar</button>
               </fieldset>
 
             </form>
-          </section>
+          </div>
 
         </main>
 
@@ -463,15 +429,128 @@
 
     </div>
   </div>
-   <script>
+
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // =========================================================
+      // 1. NAVEGAÇÃO SPA ACESSÍVEL (HOME <-> CONTATO/CADASTRO)
+      // =========================================================
+      const viewHome = document.getElementById('view-home');
+      const viewContato = document.getElementById('view-contato');
+      const navHome = document.getElementById('nav-home');
+      const navContato = document.getElementById('nav-contato');
+      const trilhaAtual = document.getElementById('trilha-atual');
+      const anuncioRota = document.getElementById('anuncio-rota');
+
+      function navegarPara(rota, moverFoco = true) {
+        const ehContato = rota === 'contato';
+
+        viewHome.hidden = ehContato;
+        viewContato.hidden = !ehContato;
+
+        if (ehContato) {
+          document.title = 'Contato e Cadastro — Harmonia Instrumentos Musicais';
+          trilhaAtual.textContent = 'Contato e Cadastro';
+          navContato.setAttribute('aria-current', 'page');
+          navHome.removeAttribute('aria-current');
+          anuncioRota.textContent = 'Página de Contato e Cadastro carregada.';
+
+          if (moverFoco) {
+            const tituloContato = document.getElementById('titulo-pagina-contato');
+            tituloContato.focus({ preventScroll: true });
+            tituloContato.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else {
+          document.title = 'Harmonia Instrumentos Musicais';
+          trilhaAtual.textContent = 'Vitrine de Instrumentos';
+          navHome.setAttribute('aria-current', 'page');
+          navContato.removeAttribute('aria-current');
+          anuncioRota.textContent = 'Página inicial carregada.';
+
+          if (moverFoco) {
+            const tituloBanner = document.getElementById('titulo-banner');
+            tituloBanner.focus({ preventScroll: true });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }
+      }
+
+      // Intercepta cliques nos links internos da SPA
+      document.querySelectorAll('[data-rota]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const destino = link.getAttribute('data-rota');
+          history.pushState(null, '', `#${destino}`);
+          navegarPara(destino, true);
+        });
+      });
+
+      // Suporta botões Voltar / Avançar do navegador
+      window.addEventListener('popstate', () => {
+        const rotaHash = window.location.hash.replace('#', '');
+        navegarPara(rotaHash === 'contato' ? 'contato' : 'home', true);
+      });
+
+      // Carrega a rota inicial se o usuário abrir direto com #contato
+      if (window.location.hash === '#contato') {
+        navegarPara('contato', false);
+      }
+
+      // =========================================================
+      // 2. CARROSSEL ACESSÍVEL
+      // =========================================================
+      const trilho = document.getElementById('carrossel-trilho');
+      const slides = Array.from(document.querySelectorAll('.carrossel-slide'));
+      const indicadores = Array.from(document.querySelectorAll('.indicador'));
+      const btnAnterior = document.getElementById('btn-slide-anterior');
+      const btnProximo = document.getElementById('btn-slide-proximo');
+      const statusCarrossel = document.getElementById('status-carrossel');
+      let slideAtual = 0;
+
+      function atualizarCarrossel(novoIndice) {
+        slideAtual = (novoIndice + slides.length) % slides.length;
+        trilho.style.transform = `translateX(-${slideAtual * 100}%)`;
+
+        slides.forEach((slide, idx) => {
+          slide.inert = idx !== slideAtual;
+        });
+
+        indicadores.forEach((ind, idx) => {
+          const ativo = idx === slideAtual;
+          ind.classList.toggle('ativo', ativo);
+          if (ativo) {
+            ind.setAttribute('aria-current', 'true');
+          } else {
+            ind.removeAttribute('aria-current');
+          }
+        });
+
+        if (statusCarrossel) {
+          statusCarrossel.textContent = `Exibindo slide ${slideAtual + 1} de ${slides.length}`;
+        }
+      }
+
+      if (trilho && slides.length > 0) {
+        btnAnterior.addEventListener('click', () => atualizarCarrossel(slideAtual - 1));
+        btnProximo.addEventListener('click', () => atualizarCarrossel(slideAtual + 1));
+
+        indicadores.forEach((ind) => {
+          ind.addEventListener('click', () => {
+            atualizarCarrossel(Number(ind.getAttribute('data-slide')));
+          });
+        });
+
+        atualizarCarrossel(0);
+      }
+
+      // =========================================================
+      // 3. VALIDAÇÃO ACESSÍVEL DO FORMULÁRIO
+      // =========================================================
       const form = document.getElementById('form-cadastro');
       const resumoErros = document.getElementById('resumo-erros');
       const listaResumoErros = document.getElementById('lista-resumo-erros');
       const mensagemSucesso = document.getElementById('mensagem-sucesso');
 
-
-      // Validação matemática de CPF
       function validarCPF(cpfStr) {
         const cpf = cpfStr.replace(/\D/g, '');
         if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
@@ -489,7 +568,6 @@
         return resto === parseInt(cpf.charAt(10));
       }
 
-      // Máscaras de digitação
       document.getElementById('cad-cpf').addEventListener('input', (e) => {
         let v = e.target.value.replace(/\D/g, '').slice(0, 11);
         v = v.replace(/(\d{3})(\d)/, '$1.$2');
@@ -603,7 +681,6 @@
         return erro;
       }
 
-      // Validação ao perder o foco (on blur) e remoção ao corrigir
       Object.keys(validadores).forEach((id) => {
         const campo = document.getElementById(id);
         if (!campo) return;
@@ -623,7 +700,6 @@
         });
       });
 
-      // Validação no envio: foca APENAS no resumo de erros no início do formulário (não sobe para o topo da página)
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         mensagemSucesso.hidden = true;
@@ -664,7 +740,6 @@
           });
 
           resumoErros.hidden = false;
-          // Foca e rola apenas até o resumo no início do formulário (sem voltar ao topo da página)
           resumoErros.focus({ preventScroll: true });
           resumoErros.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
@@ -686,28 +761,6 @@
         }
       });
     });
-    
-    function atualizarCarrossel(novoIndice) {
-        slideAtual = (novoIndice + slides.length) % slides.length;
-        trilho.style.transform = `translateX(-${slideAtual * 100}%)`;
-
-        slides.forEach((slide, idx) => {
-          const ativo = idx === slideAtual;
-          slide.inert = !ativo;
-        });
-
-        indicadores.forEach((ind, idx) => {
-          const ativo = idx === slideAtual;
-          ind.classList.toggle('ativo', ativo);
-          if (ativo) {
-            ind.setAttribute('aria-current', 'true');
-          } else {
-            ind.removeAttribute('aria-current');
-          }
-        });
-
-        statusCarrossel.textContent = `Exibindo slide ${slideAtual + 1} de ${slides.length}`;
-      }
   </script>
 </body>
 
